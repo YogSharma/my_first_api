@@ -33,4 +33,13 @@ class ProductController extends Controller
             'data' => new ProductResource($product)
         ], \Symfony\Component\HttpFoundation\Response::HTTP_CREATED);
     }
+
+    public function update(ProductRequest $request, Product $product){
+        $request['details'] = $request->description;
+        unset($request['description']);
+        $product->update($request->all());
+        return response([
+            'data' => new ProductResource($product)
+        ], \Symfony\Component\HttpFoundation\Response::HTTP_CREATED);
+    }
 }

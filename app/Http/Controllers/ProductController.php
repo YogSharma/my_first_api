@@ -42,4 +42,11 @@ class ProductController extends Controller
             'data' => new ProductResource($product)
         ], \Symfony\Component\HttpFoundation\Response::HTTP_CREATED);
     }
+
+    public function destroy(Product $product){
+        $product->delete();
+        return response([
+            'data' =>null
+        ], \Symfony\Component\HttpFoundation\Response::HTTP_NO_CONTENT);
+    }
 }
